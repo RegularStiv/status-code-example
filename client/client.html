@@ -28,12 +28,12 @@
   
   <script>
     const handleResponse = (response) => {
-
+      console.log(response);
     };
     
-    const sendFetch = (url) => {
-
-      //handleResponse(response);
+    const sendFetch = async (url) => {
+      const response = await fetch(url);
+      handleResponse(response);
     };
 
     const init = () => {
@@ -41,7 +41,9 @@
       const badRequestButton = document.querySelector("#badRequest");
       const notFoundButton = document.querySelector("#notFound");
 
-      
+      successButton.addEventListener('click', sendFetch('/success'));
+      badRequestButton.onclick = sendFetch('/badRequest');
+      notFoundButton.onclick = sendFetch('/123123');
     };
 
     window.onload = init;
